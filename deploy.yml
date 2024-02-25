@@ -1,26 +1,7 @@
 ---
 - name: Pull Docker Image from Docker Hub
   hosts: localhost
-  # remote_user: gurupavani
-  # become: false
-  # gather_facts: no
-  # vars:
-  #   ansible_python_interpreter: /usr/bin/python3.10
   tasks:
-    # - name: Debug Docker SDK
-    #   debug:
-    #     msg: "Docker SDK installed: {{ 'docker' in ansible_python_version }}"
-#      verbosity: 2
-    # - name: Pull Docker Image
-    #   docker_image:
-    #     name: "gurupavani31/calculator-spe"
-    #     source: pull
-    #   register: docker_pull_result
-
-    # - name: Display Docker Pull Result
-    #   debug:
-    #     var: docker_pull_result 
-
     - name: Start Docker service
       service:
         name: docker
