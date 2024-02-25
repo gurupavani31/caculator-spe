@@ -27,7 +27,7 @@
         state: started
     
     - name: Pull docker image
-     shell: docker pull gurupavani31/calculator-spe
+      shell: docker pull gurupavani31/calculator-spe
      
     - name: Running container
       shell: docker run -it -d gurupavani31/calculator-spe
