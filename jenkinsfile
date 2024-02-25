@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('*/5 * * * *') // Polls the SCM every 5 minutes
+    }
+
     environment {
             DOCKER_IMAGE_NAME = 'calculator-spe'
             GITHUB_REPO_URL = 'https://github.com/gurupavani31/calculator-spe'
