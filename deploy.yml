@@ -6,9 +6,9 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
   tasks:
-    - name: Debug Docker SDK
-      debug:
-        msg: "Docker SDK installed: {{ 'docker' in ansible_python_version }}"
+    # - name: Debug Docker SDK
+    #   debug:
+    #     msg: "Docker SDK installed: {{ 'docker' in ansible_python_version }}"
 #      verbosity: 2
     - name: Pull Docker Image
       docker_image:
