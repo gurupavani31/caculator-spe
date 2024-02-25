@@ -1,45 +1,81 @@
 pipeline {
     agent any
 
+    environment {
+            DOCKER_IMAGE_NAME = 'calculator-spe'
+            GITHUB_REPO_URL = 'https://github.com/gurupavani31/calculator-spe'
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your Maven project from version control
-                git 'https://github.com/your/repository.git'
+                script {
+                        git branch: 'master', url: "${GITHUB_REPO_URL}"
+                }
             }
         }
 
-        stage('Build') {
+        stage('Maven Build') {
             steps {
-                // Run Maven clean and package goals
-                sh 'mvn clean package'
+                script {
+                    sh 'mvn clean package'
+                }
             }
         }
 
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                // Run Maven tests
-                sh 'mvn test'
+                script {
+                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                }
             }
         }
 
-        stage('Deploy') {
+        stage('Push Docker Images') {
             steps {
-                // Example: Deploy to a Maven repository
-                // This step depends on your project's deployment configuration
-                sh 'mvn deploy'
+                script{
+                    docker.withRegistry('', 'DockerHubCred') {
+                    sh "docker tag ${DOCKER_IMAGE_NAME} gurupavani31/calculator-spe"
+                    sh "docker push gurupavani31/${DOCKER_IMAGE_NAME}"
+                    }
+                }
+            }
+        }
+        stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'deploy.yml',
+                        inventory: 'inventory'
+                     )
+                }
             }
         }
     }
 
     post {
         success {
-            // Send notifications or trigger downstream jobs upon successful build
-            echo 'Build successful!'
+            // Send email notification on successful build
+            emailext(
+            attachLog: true,
+            body: "Your build is successful. Docker image deployed.",
+            subject: "Build Success",
+            to: "Pavani.Janga@iiitb.ac.in"
+            )
+            // Remove old Docker images
+            script {
+                docker.image("calculator-spe:latest").remove()
+                docker.image("calculator-spe-test:latest").remove()
+            }
         }
         failure {
-            // Send notifications or take actions upon failed build
-            echo 'Build failed!'
+            // Send email notification on build failure
+            emailext (
+            attachLog: true,
+            body: "Your build has failed. Please check the Jenkins console output for details.",
+            subject: "Build Failure",
+            to: "Pavani.Janga@iiitb.ac.in"
+            )
         }
     }
 }
