@@ -64,10 +64,10 @@ pipeline {
             to: "jangagurupavani.mt@gmail.com"
             )
             // Remove old Docker images
-            script {
-                docker.image("calculator-spe:latest").remove()
-                docker.image("calculator-spe-test:latest").remove()
-            }
+            //script {
+            //    docker.image("calculator-spe:latest").remove()
+            //    docker.image("calculator-spe-test:latest").remove()
+            //}
         }
         failure {
             // Send email notification on build failure
