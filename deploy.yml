@@ -4,6 +4,10 @@
   remote_user: gurupavani
   become: false
   tasks:
+    - name: Debug Docker SDK
+      debug:
+        msg: "Docker SDK installed: {{ 'docker' in ansible_python_version }}"
+      verbosity: 2
     - name: Pull Docker Image
       docker_image:
         name: "gurupavani31/calculator-spe"
