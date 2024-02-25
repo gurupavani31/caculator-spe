@@ -61,7 +61,7 @@ pipeline {
             attachLog: true,
             body: "Your build is successful. Docker image deployed.",
             subject: "Build Success",
-            to: "Pavani.Janga@iiitb.ac.in"
+            to: "jangagurupavani.mt@gmail.com"
             )
             // Remove old Docker images
             script {
@@ -75,7 +75,7 @@ pipeline {
             attachLog: true,
             body: "Your build has failed. Please check the Jenkins console output for details.",
             subject: "Build Failure",
-            to: "Pavani.Janga@iiitb.ac.in"
+            to: "jangagurupavani.mt@gmail.com"
             )
         }
     }
