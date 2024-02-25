@@ -36,6 +36,21 @@ pipeline {
             }
         }
 
+        stage('Remove Old Docker Images') {
+            steps {
+                script {
+                    // Run Docker CLI command to get a list of images
+                    def imagesList = sh(script: 'docker images --format "{{.Repository}}:{{.Tag}}"', returnStdout: true).trim().split('\n')
+
+                    // Loop through each image name
+                    imagesList.each { imageName ->
+                        // Remove the Docker image
+                        sh "docker rmi -f $imageName"
+                    }
+                }
+            }
+        }
+
         stage('Push Docker Images') {
             steps {
                 script{
