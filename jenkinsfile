@@ -40,7 +40,7 @@ pipeline {
                         docker.build("${DOCKER_IMAGE_NAME}", '.')
 
                         // Create a named container from the built image
-                        sh 'docker run -d --name calculator-spe-container ${DOCKER_IMAGE_NAME}'
+                        // sh 'docker run -d --name calculator-spe-container ${DOCKER_IMAGE_NAME}'
                     }
                 }
             }

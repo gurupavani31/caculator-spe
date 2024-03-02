@@ -11,4 +11,4 @@
       shell: docker pull gurupavani31/calculator-spe
      
     - name: Running container
-      shell: docker run -it -d gurupavani31/calculator-spe
+      shell: docker run -it -d --name calculator-spe-container gurupavani31/calculator-spe
