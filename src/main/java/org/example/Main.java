@@ -17,8 +17,8 @@ public class Main {
                 "4. Division\n"
                 +
                 "5. SquareRoot\n"
-//                        +
-//                "6. Factorial\n"
+                        +
+                "6. Factorial\n"
         );
         int ch = sc.nextInt();
 
@@ -69,12 +69,12 @@ public class Main {
 
                 res = c.squareRoot(a);
                 break;
-//            case 6:
-//                System.out.println("Enter the Number :");
-//                d = sc.nextLong();
-//
-//                res = c.factorial(d);
-//                break;
+            case 6:
+                System.out.println("Enter the Number :");
+                d = sc.nextLong();
+
+                res = c.factorial(d);
+                break;
             default:break;
         }
         System.out.println("Result is : "+res);

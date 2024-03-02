@@ -44,15 +44,15 @@ public class CalculatorTest {
         assertEquals("Number cannot be negative for square root", calculator.squareRoot(-25.0));
     }
 
-//    @Test
-//    public void factorial() {
-//        Calculator calculator = new Calculator();
-//        assertEquals("120", calculator.factorial(5));
-//    }
-//
-//    @Test
-//    public void factorialNegative() {
-//        Calculator calculator = new Calculator();
-//        assertEquals("Number cannot be negative for factorial", calculator.factorial(-3));
-//    }
+    @Test
+    public void factorial() {
+        Calculator calculator = new Calculator();
+        assertEquals("120", calculator.factorial(5));
+    }
+
+    @Test
+    public void factorialNegative() {
+        Calculator calculator = new Calculator();
+        assertEquals("Number cannot be negative for factorial", calculator.factorial(-3));
+    }
 }

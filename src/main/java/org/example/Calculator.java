@@ -35,15 +35,15 @@ public class Calculator {
         }
     }
 
-//    public String factorial(long a) {
-//        if (a < 0) {
-//            return "Number cannot be negative for factorial";
-//        } else {
-//            long ans = 1;
-//            for (long i = 2; i <= a; i++) {
-//                ans *= i;
-//            }
-//            return Long.toString(ans);
-//        }
-//    }
+    public String factorial(long a) {
+        if (a < 0) {
+            return "Number cannot be negative for factorial";
+        } else {
+            long ans = 1;
+            for (long i = 2; i <= a; i++) {
+                ans *= i;
+            }
+            return Long.toString(ans);
+        }
+    }
 }
