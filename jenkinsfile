@@ -31,31 +31,19 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                    script {
+                        // Remove the container if it already exists
+                        sh 'docker rm -f calculator-spe-container || true' // 'true' ensures the script doesn't fail if the container doesn't exist
+
+                        // Build the Docker image
+                        docker.build("${DOCKER_IMAGE_NAME}", '.')
+
+                        // Create a named container from the built image
+                        sh 'docker run -d --name calculator-spe-container ${DOCKER_IMAGE_NAME}'
+                    }
                 }
             }
         }
-
-//         stage('Remove Old Docker Images') {
-//             steps {
-//                 script {
-//                     // Run Docker CLI command to get a list of images
-//                      def imagesList = sh(script: 'docker images --format "{{.Repository}}:{{.Tag}}"', returnStdout: true).trim()
-//
-//                      // Split the output into lines
-//                      def lines = imagesList.tokenize('\n')
-//
-//                      // Loop through each image name
-//                      lines.each { line ->
-//                          // Split each line to extract the image name
-//                          def imageName = line.tokenize(' ')[0]
-//
-//                          // Remove the Docker image
-//                          sh "docker rmi -f $imageName"
-//                      }
-//                 }
-//             }
-//         }
 
         stage('Push Docker Images') {
             steps {
@@ -82,26 +70,11 @@ pipeline {
     post {
         success {
             // Send email notification on successful build
-            emailext(
-            attachLog: true,
-            body: "Your build is successful. Docker image deployed.",
-            subject: "Build Success",
-            to: "jangagurupavani.mt@gmail.com"
-            )
-            // Remove old Docker images
-            //script {
-            //    docker.image("calculator-spe:latest").remove()
-            //    docker.image("calculator-spe-test:latest").remove()
-            //}
+            emailext attachLog: true,body: "Your build is successful. Docker image deployed.",subject: "Build Success",to: "jangagurupavani.mt@gmail.com"
         }
         failure {
             // Send email notification on build failure
-            emailext (
-            attachLog: true,
-            body: "Your build has failed. Please check the Jenkins console output for details.",
-            subject: "Build Failure",
-            to: "jangagurupavani.mt@gmail.com"
-            )
+            emailext attachLog: true,body: "Your build has failed. Please check the Jenkins console output for details.",subject: "Build Failure",to: "jangagurupavani.mt@gmail.com"
         }
     }
 }
