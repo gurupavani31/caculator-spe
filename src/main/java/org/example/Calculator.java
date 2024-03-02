@@ -25,16 +25,16 @@ public class Calculator {
         return Double.toString(ans);
     }
 
-//    public String squareRoot(double a) {
-//        if(a < 0.0) {
-//            return "Number cannot be negative for square root";
-//        }
-//        else {
-//            double ans = Math.sqrt(a);
-//            return Double.toString(ans);
-//        }
-//    }
-//
+    public String squareRoot(double a) {
+        if(a < 0.0) {
+            return "Number cannot be negative for square root";
+        }
+        else {
+            double ans = Math.sqrt(a);
+            return Double.toString(ans);
+        }
+    }
+
 //    public String factorial(long a) {
 //        if (a < 0) {
 //            return "Number cannot be negative for factorial";

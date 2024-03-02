@@ -15,8 +15,9 @@ public class Main {
                 "2. Subtraction\n" +
                 "3. Multiplication\n" +
                 "4. Division\n"
-//                +
-//                "5. SquareRoot\n" +
+                +
+                "5. SquareRoot\n"
+//                        +
 //                "6. Factorial\n"
         );
         int ch = sc.nextInt();
@@ -62,20 +63,20 @@ public class Main {
 
                 res = c.division(a,b);
                 break;
-//            case 5:
-//                System.out.println("Enter Second Number :");
-//                a = sc.nextFloat();
-//
-//                res = c.squareRoot(a);
-//                break;
+            case 5:
+                System.out.println("Enter the Number :");
+                a = sc.nextFloat();
+
+                res = c.squareRoot(a);
+                break;
 //            case 6:
-//                System.out.println("Enter Second Number :");
+//                System.out.println("Enter the Number :");
 //                d = sc.nextLong();
 //
 //                res = c.factorial(d);
 //                break;
             default:break;
         }
-        System.out.println(res);
+        System.out.println("Result is : "+res);
     }
 }

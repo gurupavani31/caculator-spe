@@ -32,18 +32,18 @@ public class CalculatorTest {
         assertEquals("Cannot divide by 0", calculator.division(5.0, 0.0));
     }
 
-//    @Test
-//    public void squareRoot() {
-//        Calculator calculator = new Calculator();
-//        assertEquals("5.0", calculator.squareRoot(25.0));
-//    }
-//
-//    @Test
-//    public void squareRootNegative() {
-//        Calculator calculator = new Calculator();
-//        assertEquals("Number cannot be negative for square root", calculator.squareRoot(-25.0));
-//    }
-//
+    @Test
+    public void squareRoot() {
+        Calculator calculator = new Calculator();
+        assertEquals("5.0", calculator.squareRoot(25.0));
+    }
+
+    @Test
+    public void squareRootNegative() {
+        Calculator calculator = new Calculator();
+        assertEquals("Number cannot be negative for square root", calculator.squareRoot(-25.0));
+    }
+
 //    @Test
 //    public void factorial() {
 //        Calculator calculator = new Calculator();
