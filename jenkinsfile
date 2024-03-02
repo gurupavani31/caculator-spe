@@ -14,6 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
+                        // github repository URL
                         git branch: 'master', url: "${GITHUB_REPO_URL}"
                 }
             }
